@@ -132,51 +132,71 @@ The AI must prefer fewer large features over many small features.
 
 ## ## 5.1 Surface Graphics, Text and Logos
 
-Text, logos, symbols, ornaments and decorative graphics are allowed.
+### 5.1 Surface Graphics, Text and Logos
 
-They may form positive or negative surface relief.
+Text, logos and simple graphic elements may be integrated into the surface of a printed object only when their geometry is compatible with large-format pellet-extrusion printing.
 
-All surface graphics must be compatible with continuous large-format
+The preferred method is LAYER-FLOW GRAPHICS.
 
-pellet-extrusion geometry.
+In layer-flow graphics, the graphic element is created by controlled local displacement of the extrusion paths themselves. The printed paths remain continuous and form part of the main surface of the object.
 
-For layer-formed graphics:
+The extrusion paths are primary; the text, logo or graphic emerges from their coordinated behavior.
 
-- extrusion paths should deform gradually to create the graphic;
+For text, logos and simple graphics:
 
-- transitions between the base surface and graphic should be broad and smooth;
+- use large, simple and clearly readable shapes;
 
-- recessed areas should develop gradually from the surrounding surface;
+- use bold, simplified letterforms suitable for large-format extrusion;
 
-- raised areas should grow gradually from the surrounding surface;
+- avoid small details, thin strokes and complex typography;
 
-- visible printed layers should remain visually continuous through the graphic.
+- keep extrusion paths continuous through the graphic area;
 
-Avoid:
+- keep the paths predominantly aligned with the normal print-layer direction;
 
-- sharp engraved-looking boundaries;
+- create the graphic through smooth, gradual local displacement of multiple neighboring extrusion paths;
 
-- deep or abrupt recesses;
+- keep the deformation localized and restrained;
 
-- near-vertical walls around recessed graphics;
+- transition smoothly from regular extrusion paths into the graphic and back to regular paths;
 
-- narrow carved grooves;
+- preserve the visible continuity of the additive manufacturing layers.
 
-- CNC-milled or routed appearance;
+Text, logos and graphics must NOT be represented as:
 
-- fine typography;
+- separately attached elements;
 
-- thin strokes;
+- separate materials or inserts;
 
-- small decorative details.
+- CNC-cut or post-machined features;
 
-The graphic should appear to be created by the printing process itself,
+- deep engraved cavities;
 
-not cut into the finished object afterward.
+- sharply recessed lettering;
 
-Exact minimum feature dimensions and allowable relief depth:
+- thin raised lettering;
 
-UNKNOWN
+- sharp-edged letter geometry;
+
+- narrow grooves or cuts;
+
+- small or highly detailed typography.
+
+CRITICAL GEOMETRIC PRINCIPLE:
+
+The text or graphic must not exist as an independent geometric object on the surface.
+
+It should exist only through the controlled behavior of the continuous extrusion paths.
+
+If the visible extrusion paths were removed, no separate text, logo or graphic geometry should remain.
+
+For image-generation prompts, describe this manufacturing principle explicitly:
+
+The visible extrusion paths themselves form the graphic. The regular continuous layer lines undergo small, smooth, coordinated local displacements. Across multiple neighboring paths, these deviations collectively create the readable text, logo or graphic. The paths remain continuous through the graphic area and smoothly return to their regular trajectories afterward.
+
+Do not describe layer-flow graphics using terms such as "engraved", "debossed", "carved", "etched", "cut into", "embossed lettering", or "recessed lettering", because these terms may imply manufacturing geometry that is incompatible with the intended extrusion process.
+
+When a user requests text, a logo or a simple graphic on the printed object, use LAYER-FLOW GRAPHICS by default unless another manufacturing method is explicitly confirmed as feasible.
 
 ---
 
@@ -429,6 +449,7 @@ A generated prompt or visualization is NOT:
 
 Final manufacturability must be verified by FORMD before production.  
   
+
 ## Unknown Manufacturing Parameters
 
 If a manufacturing parameter is not explicitly defined in this document,
@@ -438,19 +459,12 @@ it must be treated as UNKNOWN.
 Do not invent:
 
 - wall thickness;
-
 - infill strategy;
-
 - internal cavities;
-
 - internal reinforcement;
-
 - support strategy;
-
 - extrusion settings;
-
 - structural calculations;
-
 - minimum feature dimensions.
 
 Visible design geometry may be adapted for known manufacturing constraints,
