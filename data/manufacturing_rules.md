@@ -1,4 +1,5 @@
 # FORMD Manufacturing Rules
+
 Version: 0.1
 
 ## 1. Manufacturing Technology
@@ -33,6 +34,8 @@ FORMD manufacturing rules.
 
 ---
 
+
+
 ## 3. Materials
 
 FORMD prints only with plastic supplied as pellets.
@@ -66,6 +69,8 @@ UNKNOWN
 
 ---
 
+
+
 ## 4. Design Language
 
 The manufacturing technology is best suited for furniture based on:
@@ -87,6 +92,8 @@ The layered texture of the printing process may remain visible.
 Designs may intentionally emphasize the layer-by-layer manufacturing process.
 
 ---
+
+
 
 ## 5. Detail Scale
 
@@ -118,6 +125,92 @@ If decoration is required, prefer:
 - patterns integrated into the overall geometry.
 
 The AI must prefer fewer large features over many small features.
+
+---
+
+## 5.1 Surface Graphics, Text and Logos
+
+Text, logos, symbols, ornaments and graphic elements may be integrated into
+
+the printed surface.
+
+Both positive relief and shallow negative relief are allowed.
+
+However, these elements must be formed as part of the continuous
+
+layer-by-layer printed geometry.
+
+Preferred:
+
+- large-scale lettering;
+
+- bold and simplified letterforms;
+
+- large logos and symbols;
+
+- shallow embossed or debossed relief;
+
+- smooth transitions between the base surface and the graphic element;
+
+- gradual local deformation of the printed surface;
+
+- extrusion layers that visually follow and participate in the relief;
+
+- broad radii around raised or recessed features.
+
+Avoid:
+
+- sharply engraved lettering;
+
+- deep recessed text with near-vertical walls;
+
+- CNC-milled or carved appearance;
+
+- abrupt steps between the surface and the lettering;
+
+- very thin strokes;
+
+- small typography;
+
+- fine serifs;
+
+- tiny logos;
+
+- narrow grooves;
+
+- fine engraved ornament.
+
+Text or logos must not appear as if they were cut into the object after
+
+printing.
+
+A recessed graphic element should be shallow and smoothly blended into the
+
+surrounding geometry.
+
+A raised graphic element should grow gradually from the surrounding printed
+
+surface rather than appear as a separate thin object attached to it.
+
+The visible extrusion layers should remain compatible with the graphic
+
+geometry and should flow naturally through or around the relief.
+
+Minimum text size:
+
+UNKNOWN
+
+Maximum relief depth:
+
+UNKNOWN
+
+Maximum relief height:
+
+UNKNOWN
+
+Minimum stroke width:
+
+UNKNOWN
 
 ---
 
@@ -158,6 +251,8 @@ UNKNOWN
 
 ---
 
+
+
 ## 7. Openings and Hollow Geometry
 
 Large openings and hollow forms may be used when compatible with the
@@ -185,6 +280,8 @@ UNKNOWN
 
 ---
 
+
+
 ## 8. Furniture Typology
 
 The system may create concepts for:
@@ -209,6 +306,8 @@ manufacturing process.
 
 ---
 
+
+
 ## 9. Furniture Functionality
 
 Furniture must visually appear physically plausible and usable.
@@ -231,6 +330,8 @@ The AI must NOT claim a specific load capacity unless it has been
 verified separately by engineering calculations.
 
 ---
+
+
 
 ## 10. Additional Components
 
@@ -256,6 +357,8 @@ UNKNOWN
 
 ---
 
+
+
 ## 11. Manufacturing Orientation
 
 The design must be compatible with layer-by-layer additive manufacturing.
@@ -270,6 +373,8 @@ Support material availability:
 UNKNOWN
 
 ---
+
+
 
 ## 12. Surface Appearance
 
@@ -290,6 +395,8 @@ Post-processing capabilities:
 UNKNOWN
 
 ---
+
+
 
 ## 13. Manufacturability Priority
 
@@ -314,6 +421,8 @@ adaptation is possible.
 
 ---
 
+
+
 ## 14. Prohibited Assumptions
 
 The AI must never invent:
@@ -336,6 +445,8 @@ If a required parameter is not present in this document,
 its value must be treated as UNKNOWN.
 
 ---
+
+
 
 ## 15. Status of Generated Designs
 

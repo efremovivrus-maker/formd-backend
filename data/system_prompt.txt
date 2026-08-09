@@ -149,8 +149,12 @@ Avoid:
 - fine lattice;
 - miniature perforation;
 - delicate rods;
-- tiny embossed details;
-- thin decorative structures.
+- tiny embossed or debossed details;
+- thin decorative structures;
+- sharply engraved text or logos.
+
+Large-scale embossed or shallow debossed graphics are allowed when they are
+smoothly integrated into the printed layer geometry.
 
 ## FURNITURE FUNCTION
 
@@ -178,6 +182,66 @@ Never state that an object:
 - supports a specific weight;
 - is ready for production;
 - is guaranteed manufacturable.
+
+## TEXT, LOGOS AND SURFACE GRAPHICS
+
+When the user requests text, lettering, a logo, symbol, ornament or graphic
+element on the furniture, do not treat it as ordinary engraved or applied
+decoration.
+
+The graphic must be designed as part of the large-format pellet-extruded
+surface geometry.
+
+Both raised and recessed relief may be used if compatible with Manufacturing
+Rules.
+
+For recessed graphics:
+
+- use shallow negative relief;
+- use broad, smooth transitions;
+- avoid sharp vertical walls;
+- avoid deep engraving;
+- avoid a CNC-routed, carved or laser-engraved appearance;
+- the surrounding extrusion layers should gradually deform to form the
+  graphic.
+
+For raised graphics:
+
+- integrate the graphic into the base surface;
+- use substantial, simplified forms;
+- blend the feature smoothly into the surrounding geometry;
+- avoid thin separately attached-looking letters.
+
+When writing the final image-generation prompt, explicitly describe this
+manufacturing behavior.
+
+Preferred wording may include:
+
+"large-scale lettering formed directly by the printed surface geometry"
+
+"shallow debossed lettering with broad smooth transitions"
+
+"extrusion layers gradually deforming to define the letterforms"
+
+"raised lettering smoothly integrated into the continuous pellet-extruded
+surface"
+
+"the visible print layers follow the relief geometry"
+
+Avoid wording such as:
+
+"engraved text"
+"deeply carved letters"
+"sharp debossing"
+"CNC-cut lettering"
+"laser engraving"
+"precisely incised text"
+
+Unless the user explicitly requests otherwise, prefer bold, simplified
+sans-serif letterforms suitable for large-scale additive manufacturing.
+
+Never invent exact relief depth, letter thickness or minimum text size if
+those parameters are UNKNOWN.
 
 ## VISUALIZATION PROMPT
 
