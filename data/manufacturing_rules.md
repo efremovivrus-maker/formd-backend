@@ -128,91 +128,59 @@ The AI must prefer fewer large features over many small features.
 
 ---
 
-## 5.1 Surface Graphics, Text and Logos
 
-Text, logos, symbols, ornaments and graphic elements may be integrated into
 
-the printed surface.
+## ## 5.1 Surface Graphics, Text and Logos
 
-Both positive relief and shallow negative relief are allowed.
+Text, logos, symbols, ornaments and decorative graphics are allowed.
 
-However, these elements must be formed as part of the continuous
+They may form positive or negative surface relief.
 
-layer-by-layer printed geometry.
+All surface graphics must be compatible with continuous large-format
 
-Preferred:
+pellet-extrusion geometry.
 
-- large-scale lettering;
+For layer-formed graphics:
 
-- bold and simplified letterforms;
+- extrusion paths should deform gradually to create the graphic;
 
-- large logos and symbols;
+- transitions between the base surface and graphic should be broad and smooth;
 
-- shallow embossed or debossed relief;
+- recessed areas should develop gradually from the surrounding surface;
 
-- smooth transitions between the base surface and the graphic element;
+- raised areas should grow gradually from the surrounding surface;
 
-- gradual local deformation of the printed surface;
-
-- extrusion layers that visually follow and participate in the relief;
-
-- broad radii around raised or recessed features.
+- visible printed layers should remain visually continuous through the graphic.
 
 Avoid:
 
-- sharply engraved lettering;
+- sharp engraved-looking boundaries;
 
-- deep recessed text with near-vertical walls;
+- deep or abrupt recesses;
 
-- CNC-milled or carved appearance;
+- near-vertical walls around recessed graphics;
 
-- abrupt steps between the surface and the lettering;
+- narrow carved grooves;
 
-- very thin strokes;
+- CNC-milled or routed appearance;
 
-- small typography;
+- fine typography;
 
-- fine serifs;
+- thin strokes;
 
-- tiny logos;
+- small decorative details.
 
-- narrow grooves;
+The graphic should appear to be created by the printing process itself,
 
-- fine engraved ornament.
+not cut into the finished object afterward.
 
-Text or logos must not appear as if they were cut into the object after
-
-printing.
-
-A recessed graphic element should be shallow and smoothly blended into the
-
-surrounding geometry.
-
-A raised graphic element should grow gradually from the surrounding printed
-
-surface rather than appear as a separate thin object attached to it.
-
-The visible extrusion layers should remain compatible with the graphic
-
-geometry and should flow naturally through or around the relief.
-
-Minimum text size:
-
-UNKNOWN
-
-Maximum relief depth:
-
-UNKNOWN
-
-Maximum relief height:
-
-UNKNOWN
-
-Minimum stroke width:
+Exact minimum feature dimensions and allowable relief depth:
 
 UNKNOWN
 
 ---
+
+
 
 ## 6. Structural Geometry
 
@@ -459,4 +427,32 @@ A generated prompt or visualization is NOT:
 - engineering certification;
 - confirmation that the object can definitely be manufactured.
 
-Final manufacturability must be verified by FORMD before production.
+Final manufacturability must be verified by FORMD before production.  
+  
+## Unknown Manufacturing Parameters
+
+If a manufacturing parameter is not explicitly defined in this document,
+
+it must be treated as UNKNOWN.
+
+Do not invent:
+
+- wall thickness;
+
+- infill strategy;
+
+- internal cavities;
+
+- internal reinforcement;
+
+- support strategy;
+
+- extrusion settings;
+
+- structural calculations;
+
+- minimum feature dimensions.
+
+Visible design geometry may be adapted for known manufacturing constraints,
+
+but unknown engineering solutions must not be assumed.
