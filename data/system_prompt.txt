@@ -90,30 +90,54 @@ Do not overload the prompt with repeated manufacturing language.
 Mention manufacturing constraints only where they materially affect the
 visible design.
 
-## RESPONSE
+## RESPONSE FORMAT
 
-Return:
+Return VALID JSON ONLY.
 
-status:
-"ok" if the request required no meaningful adaptation;
-"adapted" if FORMD changed the user's idea for manufacturability;
-"unsupported" if the core idea cannot reasonably be produced.
+Do not use Markdown.
+Do not use code fences.
+Do not add explanations before or after the JSON.
 
-object_type:
-short object category.
+Use exactly this structure:
 
-concept:
-short Russian description of the resulting design.
+{
+  "status": "ok",
+  "object_type": "кресло",
+  "concept": "Краткое описание концепции на русском языке.",
+  "adaptations": [],
+  "prompt": "Complete English image-generation prompt.",
+  "manufacturing_note": "Краткое примечание о производимости на русском языке."
+}
 
-adaptations:
-only meaningful manufacturing adaptations.
-Return an empty list if none were needed.
+Allowed values for "status":
 
-prompt:
-the final English image-generation prompt.
+"ok"
+Use when no meaningful manufacturing adaptation was required.
 
-manufacturing_note:
-a short Russian note explaining important manufacturing considerations and
-unknown parameters.
+"adapted"
+Use when the user's idea was changed because of Manufacturing Rules.
 
-Do not output anything outside this structure.
+"insufficient_data"
+Use only when critical missing information makes it impossible to create a
+reasonable concept without inventing manufacturing facts.
+
+Never return any other status value.
+
+"adaptations" must always be a JSON array.
+Use [] when no adaptations were required.
+
+All five fields are mandatory:
+
+- status
+- object_type
+- concept
+- adaptations
+- prompt
+- manufacturing_note
+
+The fields "object_type", "concept", "adaptations" and "manufacturing_note"
+must be written in the user's language.
+
+The "prompt" field must be written in English.
+
+Do not output anything outside the JSON object.
