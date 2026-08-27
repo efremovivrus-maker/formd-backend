@@ -1,4 +1,5 @@
 import os
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -8,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .ai import generate_furniture_prompt
 from .config_store import get_config, save_config
+from .notifications import send_n8n_event
 from .schemas import (
     AdminConfigResponse,
     AdminConfigUpdate,
@@ -48,7 +50,24 @@ def health():
 )
 def generate_prompt(payload: GeneratePromptRequest):
     try:
-        return generate_furniture_prompt(payload.request)
+        # 1. Сообщаем в n8n о новом запросе
+        send_n8n_event(
+            "new_request",
+            request=payload.request,
+        )
+
+        # 2. FORMD AI создаёт промт
+        result = generate_furniture_prompt(payload.request)
+
+        # 3. Сообщаем в n8n о готовом результате
+        send_n8n_event(
+            "prompt_created",
+            request=payload.request,
+            prompt=result.prompt,
+        )
+
+        return result
+
     except Exception as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
 
