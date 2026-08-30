@@ -125,7 +125,7 @@ Allowed structures:
 
     check_model = os.getenv(
         "OPENAI_CHECK_MODEL",
-        "gpt-5-mini",
+        "gpt-5-nano",
     )
 
     started_at = time.perf_counter()
