@@ -50,21 +50,26 @@ def health():
 )
 def generate_prompt(payload: GeneratePromptRequest):
     try:
-        # 1. Сообщаем в n8n о новом запросе
-        send_n8n_event(
-            "new_request",
-            request=payload.request,
+        # Отправляем уведомление только при первом запросе пользователя
+        if not payload.clarifications:
+            send_n8n_event(
+                "new_request",
+                request=payload.request,
+            )
+
+        # FORMD AI анализирует запрос с учетом уточнений
+        result = generate_furniture_prompt(
+            payload.request,
+            payload.clarifications,
         )
 
-        # 2. FORMD AI создаёт промт
-        result = generate_furniture_prompt(payload.request)
-
-        # 3. Сообщаем в n8n о готовом результате
-        send_n8n_event(
-            "prompt_created",
-            request=payload.request,
-            prompt=result.prompt,
-        )
+        # Если промт уже создан — отправляем его в n8n
+        if result.status != "needs_clarification" and result.prompt:
+            send_n8n_event(
+                "prompt_created",
+                request=payload.request,
+                prompt=result.prompt,
+            )
 
         return result
 
