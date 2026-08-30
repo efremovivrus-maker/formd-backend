@@ -8,6 +8,16 @@ class ClarificationItem(BaseModel):
     answer: str
 
 
+class RequestCheckResponse(BaseModel):
+    decision: Literal[
+        "ready",
+        "clarify",
+        "invalid",
+    ]
+
+    question: Optional[str] = None
+
+
 class GeneratePromptRequest(BaseModel):
     request: str = Field(
         min_length=3,
