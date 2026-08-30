@@ -6,6 +6,7 @@ load_dotenv()
 
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 from .ai import (
     check_request,
@@ -15,6 +16,7 @@ from .config_store import (
     get_config,
     save_config,
 )
+from .image_generation import generate_design_image
 from .notifications import send_n8n_event
 from .schemas import (
     AdminConfigResponse,
@@ -27,7 +29,7 @@ from .security import require_admin_token
 
 app = FastAPI(
     title="FORMD AI API",
-    version="0.2.0",
+    version="0.3.0",
 )
 
 
@@ -57,12 +59,28 @@ app.add_middleware(
 )
 
 
+# =========================
+# SCHEMAS
+# =========================
+
+class GenerateDesignRequest(BaseModel):
+    prompt: str
+
+
+# =========================
+# HEALTH
+# =========================
+
 @app.get("/health")
 def health():
     return {
         "status": "ok"
     }
 
+
+# =========================
+# GENERATE PROMPT
+# =========================
 
 @app.post(
     "/generate-prompt",
@@ -97,7 +115,6 @@ def generate_prompt(
 
         # Запрос не относится к FORMD
         if check and check.decision == "invalid":
-
             return GeneratePromptResponse(
                 status="invalid_request",
                 question=None,
@@ -115,7 +132,6 @@ def generate_prompt(
 
         # Нужен уточняющий вопрос
         if check and check.decision == "clarify":
-
             return GeneratePromptResponse(
                 status="needs_clarification",
                 question=check.question,
@@ -138,7 +154,6 @@ def generate_prompt(
         # На этом этапе дополнительных
         # уточнений быть уже не должно
         if result.status == "needs_clarification":
-
             return GeneratePromptResponse(
                 status="insufficient_data",
                 question=None,
@@ -163,12 +178,41 @@ def generate_prompt(
         return result
 
     except Exception as exc:
-
         raise HTTPException(
             status_code=502,
             detail=str(exc),
         ) from exc
 
+
+# =========================
+# GENERATE VISUALIZATION
+# =========================
+
+@app.post("/generate-design")
+def generate_design(
+    payload: GenerateDesignRequest,
+):
+    try:
+
+        image_base64 = generate_design_image(
+            payload.prompt
+        )
+
+        return {
+            "status": "ok",
+            "image_base64": image_base64,
+        }
+
+    except Exception as exc:
+        raise HTTPException(
+            status_code=502,
+            detail=str(exc),
+        ) from exc
+
+
+# =========================
+# ADMIN CONFIG
+# =========================
 
 @app.get(
     "/admin/config",
